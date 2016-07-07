@@ -26,7 +26,15 @@ public class MTB_TC1_Login extends MyProjTestCaseUtils{
 							.and()
 							.signIn(uiInstance)
 				)
-		.check(homePage.validateWelcome());
+		.check(homePage.validateWelcome())
+				.using(
+						homePage
+						.clickLeftSubMenu()
+						.and()
+						.clickManageIdentity()
+						.and()
+						.clickTransferRequest()
+								);
 		
 	}
 }

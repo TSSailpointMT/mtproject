@@ -21,7 +21,6 @@ public class SystemPage extends MyProjPage{
 
 	public SystemPage setUsername(User user){
 		this.username_input.sendKeys(user.getUsername());
-		this.submit_button.click();
 		return this;
 	}
 	
