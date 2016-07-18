@@ -1,8 +1,10 @@
 package org.ts.mtproject.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import com.ts.commons.Validator;
 
@@ -283,19 +285,28 @@ public class HomePage extends SystemPage{
 			return this;
 		}
 		
-		public HomePage clickMyDasboard() {
+		public MyDashboardPage clickMyDasboard(UI ui) {
 			myDashboard.click();
-			return this;
+			MyDashboardPage page = new MyDashboardPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), MyDashboardPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickComplianceDasboard() {
+		public ComplianceDashboardPage clickComplianceDasboard(UI ui) {
 			complianceDashboard.click();
-			return this;
+			ComplianceDashboardPage page = new ComplianceDashboardPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), ComplianceDashboardPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickLifeCycleDasboard() {
+		public LifecycleDashboardPage clickLifeCycleDasboard(UI ui) {
 			lifeCycleDashboard.click();
-			return this;
+			LifecycleDashboardPage page = new LifecycleDashboardPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), LifecycleDashboardPage.class);
+			page.and(ui);
+			return page;
 		}
 		//***********************************************************
 		public HomePage clickMyTasks() {
@@ -304,34 +315,52 @@ public class HomePage extends SystemPage{
 			return this;
 		}
 		
-		public HomePage clickAccessReviewMyTasks() {
+		public AccessReviewsPage clickAccessReviewMyTasks(UI ui) {
 			accessReviews.click();
-			return this;
+			AccessReviewsPage page = new AccessReviewsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), AccessReviewsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickApprovalsMyTasks() {
+		public ApprovalsPage clickApprovalsMyTasks(UI ui) {
 			approvals.click();
-			return this;
+			ApprovalsPage page = new ApprovalsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), ApprovalsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickFormsMyTasks() {
+		public FormsPage clickFormsMyTasks(UI ui) {
 			forms.click();
-			return this;
+			FormsPage page = new FormsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), FormsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickSignOffReportsMyTasks() {
+		public SignoffReportsPage clickSignOffReportsMyTasks(UI ui) {
 			signOffReports.click();
-			return this;
+			SignoffReportsPage page = new SignoffReportsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), SignoffReportsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickNotificationsMyTasks() {
+		public NotificationsPage clickNotificationsMyTasks(UI ui) {
 			notifications.click();
-			return this;
+			NotificationsPage page = new NotificationsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), NotificationsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
-		public HomePage clickPolicyViolationsMyTasks() {
+		public PolicyViolationsPage clickPolicyViolationsMyTasks(UI ui) {
 			policyViolationsLeftMenu.click();
-			return this;
+			PolicyViolationsPage page = new PolicyViolationsPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), PolicyViolationsPage.class);
+			page.and(ui);
+			return page;
 		}
 		
 		public HomePage clickReaquestViolationsMyTasks() {
@@ -573,6 +602,14 @@ public class HomePage extends SystemPage{
 		public HomePage clickPoliciesMenuBar(){
 			barMenuPolicies.click();
 			return this;
+		}
+		
+		public TasksPage clickTasksMenuBar(UI ui){
+			barMenuTasks.click();
+			TasksPage page = new TasksPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), TasksPage.class);
+			page.and(ui);
+			return page;
 		}
 		
 		public HomePage clickGroupsMenuBar(){

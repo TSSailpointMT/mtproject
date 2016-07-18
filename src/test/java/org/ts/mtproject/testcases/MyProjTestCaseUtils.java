@@ -2,11 +2,13 @@ package org.ts.mtproject.testcases;
 
 import org.ts.mtproject.utils.UI;
 import com.ts.commons.TestCaseUtil;
+
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 
 
 public class MyProjTestCaseUtils extends TestCaseUtil {
-	protected UI uiInstance;
+	protected static UI uiInstance;
 
 	public MyProjTestCaseUtils(String browserType) {
 		uiInstance = new UI(browserType);
@@ -22,4 +24,19 @@ public class MyProjTestCaseUtils extends TestCaseUtil {
 			  Thread.sleep(seconds * 1000);
 			   }catch (InterruptedException e) {}  
 	 }
+	
+	public static void waitUntilWebElemenmtIsPresent(String xpath){
+		while(validateXpath(xpath)){
+			MyProjTestCaseUtils.sleep(1);
+			
+		}
+		
+	}
+	
+	private static boolean validateXpath(String xpath){
+		boolean theXpathappear = uiInstance.getDriver()
+		.findElements(By.xpath(xpath)).isEmpty();
+		
+		return theXpathappear;
+	}
 }
