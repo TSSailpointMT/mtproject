@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.ts.mtproject.testcases.MyProjTestCaseUtils;
 import org.ts.mtproject.utils.UI;
 
 import com.ts.commons.Validator;
@@ -20,10 +21,12 @@ public class EditTaskPage extends TasksPage{
 	
 	public EditTaskPage clickSaveAndExecuteButton() {
 		saveAndExecuteButton.click();
+		MyProjTestCaseUtils.sleep(2);
 		return this;
 	}
 	
 	public TasksPage clickAcceptButton(UI ui) {
+		MyProjTestCaseUtils.sleep(3);
 		acceptButtonPoPupWindow.click();
 		TasksPage page = new TasksPage();
 		page = PageFactory.initElements((WebDriver) ui.getDriver(), TasksPage.class);

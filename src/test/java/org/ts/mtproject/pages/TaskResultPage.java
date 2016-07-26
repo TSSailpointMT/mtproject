@@ -16,6 +16,8 @@ public class TaskResultPage extends TasksPage{
 	@FindBy (xpath=".//*[@id='progress']")
 	private WebElement progressField;
 	
+	@FindBy (xpath=".//*[@class='rBorder'][contains(.,'Fail')]")
+	private WebElement statusFailTaskResult;
 
 	public Validator validateTaskResultPage() 
 	{
@@ -48,6 +50,44 @@ public class TaskResultPage extends TasksPage{
 					Assert.assertEquals(uiInstance.getDriver()
 							.findElement(By.xpath(".//*[@id='progress'][contains(.,'Completed')]"))
 							.getText().trim(), "Completed");
+				} catch (NullPointerException e){
+					System.out.println("Test--  NullPointerException  ");
+				}
+
+			}
+		};
+	}
+	
+	public Validator validateTaskFailed() 
+	{
+		return new Validator() 
+		{
+			@Override
+			public void Validate() 
+			{
+				try{
+					MyProjTestCaseUtils.sleep(5);
+					Assert.assertEquals(uiInstance.getDriver()
+							.findElement(By.xpath(".//*[@id='taskResultsDetailsDiv']/descendant::td[starts-with(normalize-space(.),'Fail')]"))
+							.getText().trim(), "Fail");
+				} catch (NullPointerException e){
+					System.out.println("Test--  NullPointerException  ");
+				}
+
+			}
+		};
+	}
+	
+	public Validator validateFileFromHRIsEmpty() 
+	{
+		return new Validator() 
+		{
+			@Override
+			public void Validate() 
+			{
+				try{
+					MyProjTestCaseUtils.waitUntilWebElemenmtIsPresent(".//*[@id='progress'][contains(.,'Completed')]");
+					Assert.assertFalse(!MyProjTestCaseUtils.validateXpath(".//*[@class='leftAlignedColumn'][contains(.,'Accounts scanned')]"));
 				} catch (NullPointerException e){
 					System.out.println("Test--  NullPointerException  ");
 				}

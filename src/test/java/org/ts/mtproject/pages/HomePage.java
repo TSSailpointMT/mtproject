@@ -537,9 +537,12 @@ public class HomePage extends SystemPage{
 			return this;
 		}
 		
-		public HomePage clickApplicationDefinitionLinkMenuBar(){
+		public ApplicationDefinitionPage clickApplicationDefinitionLinkMenuBar(UI ui){
 			barMenuApplicationDefinition.click();
-			return this;
+			ApplicationDefinitionPage page = new ApplicationDefinitionPage();
+			page = PageFactory.initElements((WebDriver) ui.getDriver(), ApplicationDefinitionPage.class);
+			page.and(ui);
+			return page;
 		}
 		
 		public HomePage clickEntitlementCatalogLinkMenuBar(){

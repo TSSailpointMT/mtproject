@@ -3,15 +3,17 @@ package org.ts.mtproject.testcases;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.Test;
 import org.ts.mtproject.data.User;
+import org.ts.mtproject.pages.ApplicationDefinitionPage;
+import org.ts.mtproject.pages.EditApplicationPage;
 import org.ts.mtproject.pages.EditTaskPage;
 import org.ts.mtproject.pages.HomePage;
 import org.ts.mtproject.pages.TaskResultPage;
 import org.ts.mtproject.pages.TasksPage;
 
 
-public class ManualAggregationForNewEmployeeTC extends MyProjTestCaseUtils{
+public class ManualAggregationForNewEmployeeHRFileEmptyTC extends MyProjTestCaseUtils{
 
-	public ManualAggregationForNewEmployeeTC() {
+	public ManualAggregationForNewEmployeeHRFileEmptyTC() {
 		super(BrowserType.CHROME);
 	}
 
@@ -19,10 +21,12 @@ public class ManualAggregationForNewEmployeeTC extends MyProjTestCaseUtils{
 	private TasksPage tasksPage;
 	private EditTaskPage editTaskPage;
 	private TaskResultPage taskResult;
+	private ApplicationDefinitionPage applicationDefinitionPage;
+	private EditApplicationPage editApplicationPage;
 	private User admin = new User("spadmin", "admin");
 
 	@Test
-	public void ManualAddNewEmployee(){
+	public void ManualAddNewEmployeeEmptyHRFile(){
 		using(homePage = uiInstance
 				.getSystemPage()
 				.and()
@@ -33,6 +37,22 @@ public class ManualAggregationForNewEmployeeTC extends MyProjTestCaseUtils{
 				.signIn(uiInstance)
 				)
 				.check(homePage.validateWelcome())
+				.using(applicationDefinitionPage = homePage
+				.clickApplicationsLinkMenuBar()
+				.clickApplicationDefinitionLinkMenuBar(uiInstance)
+				)
+				.check(applicationDefinitionPage.validateApplicationDefinitionPage())
+				.using(editApplicationPage = applicationDefinitionPage
+				.clickUltiproHRApplicationlink(uiInstance)
+				)
+				.check(editApplicationPage.validateEditApplicationPage("Ultipro HR"))
+				.using(applicationDefinitionPage = editApplicationPage
+				.clickConfigurationTab()
+				.changeHRFilePathToAnEmptyFile()
+				.checkFirstLineAsHeaderCheckbox()
+				.clickSaveButton(uiInstance)
+				)
+				.check(applicationDefinitionPage.validateApplicationDefinitionPage())
 				.using(tasksPage = homePage
 				.clickSetupLinkMenuBar()
 				.and()
@@ -52,6 +72,6 @@ public class ManualAggregationForNewEmployeeTC extends MyProjTestCaseUtils{
 				.sendSearchInfoForHRAggregation()
 				.clickSearchButton()
 				.clickLastTaskRanOfMTBUltiproHRAggregation(uiInstance)
-				).check(taskResult.validateTaskIsCompleted());
+				).check(taskResult.validateFileFromHRIsEmpty());
 	}
 }

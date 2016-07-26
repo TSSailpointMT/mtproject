@@ -33,7 +33,7 @@ public class MyProjTestCaseUtils extends TestCaseUtil {
 		
 	}
 	
-	private static boolean validateXpath(String xpath){
+	public static boolean validateXpath(String xpath){
 		boolean theXpathappear = uiInstance.getDriver()
 		.findElements(By.xpath(xpath)).isEmpty();
 		

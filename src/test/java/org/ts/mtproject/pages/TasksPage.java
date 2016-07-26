@@ -19,6 +19,15 @@ public class TasksPage extends HomePage{
 	@FindBy(xpath=".//*[@id='tab-1090-btnEl']")
 	private WebElement taskResultTab;
 	
+	@FindBy(xpath=".//*[@id='tab-1089-btnWrap']")
+	private WebElement scheduledTaskTab;
+	
+	@FindBy(xpath=".//*[@id='schedulesSearchField-inputEl']")
+	private WebElement searchByScheduleNameScheduledTasksTab;
+	
+	@FindBy(xpath=".//*[@id='ext-gen1232']")
+	private WebElement searchButtonScheduleTab;
+	
 	@FindBy(xpath=".//*[@id='resultsSearchField-inputEl']")
 	private WebElement searchByResultNameTaskResultTab;
 	
@@ -34,7 +43,8 @@ public class TasksPage extends HomePage{
 	@FindBy(xpath=".//*[@id='gridview-1068']/descendant::td[starts-with(normalize-space(.),'MTB Ultipro HR Aggregation')][1]")
 	private WebElement lastTaskRanOfMTBUltiproHRAggregation;
 	
-	
+	@FindBy(xpath=".//td[contains(.,'Daily HR Aggregation - Ultipro')]")
+	private WebElement selectDailyHRAggInScheduleTab;
 	
 	public EditTaskPage clickMTBUltiproHRAggregationlink(UI ui){
 		mtbUltiproHRAggregationlink.click();
@@ -80,6 +90,25 @@ public class TasksPage extends HomePage{
 		return page;
 	}
 	
+	public TasksPage clickScheduledTastTab(){
+		scheduledTaskTab.click();
+		MyProjTestCaseUtils.sleep(1);
+		return this;
+	}
+	
+	public TasksPage clickDailyHRAggregationOptionOnScheduleTab(){
+		selectDailyHRAggInScheduleTab.click();
+		MyProjTestCaseUtils.sleep(3);
+		return this;
+	}
+	
+	public EditSchedulePopupPage clickScheduleTaskOfMTBUltiproHRAggregation(UI ui){
+		selectDailyHRAggInScheduleTab.click();
+		EditSchedulePopupPage page = new EditSchedulePopupPage();
+		page = PageFactory.initElements((WebDriver) ui.getDriver(), EditSchedulePopupPage.class);
+		page.and(ui);
+		return page;
+	}
 	
 	public Validator validateTasksPage() 
 	{
