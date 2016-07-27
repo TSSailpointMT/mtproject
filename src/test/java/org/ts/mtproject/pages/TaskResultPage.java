@@ -58,6 +58,26 @@ public class TaskResultPage extends TasksPage{
 		};
 	}
 	
+	public Validator validateTaskScannedAccounts() 
+	{
+		return new Validator() 
+		{
+			@Override
+			public void Validate() 
+			{
+				try{
+					MyProjTestCaseUtils.waitUntilWebElemenmtIsPresent(".//*[@id='progress'][contains(.,'Completed')]");
+					Assert.assertEquals(uiInstance.getDriver()
+							.findElement(By.xpath(".//*[@class='leftAlignedColumn'][contains(.,'Accounts scanned')]"))
+							.getText().trim(), "Accounts scanned");
+				} catch (NullPointerException e){
+					System.out.println("Test--  NullPointerException  ");
+				}
+
+			}
+		};
+	}
+	
 	public Validator validateTaskFailed() 
 	{
 		return new Validator() 

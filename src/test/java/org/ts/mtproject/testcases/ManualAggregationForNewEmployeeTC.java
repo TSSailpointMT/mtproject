@@ -52,6 +52,6 @@ public class ManualAggregationForNewEmployeeTC extends MyProjTestCaseUtils{
 				.sendSearchInfoForHRAggregation()
 				.clickSearchButton()
 				.clickLastTaskRanOfMTBUltiproHRAggregation(uiInstance)
-				).check(taskResult.validateTaskIsCompleted());
+				).check(taskResult.validateTaskScannedAccounts());
 	}
 }
